@@ -22,6 +22,10 @@ get_top_mem_processes() {
     ps aux --sort=-%mem | head -n 6 | tail -n 5 | awk '{print $2, $11, $4"%"}'
 }
 
+get_uptime() {
+  uptime
+}
+
 # Main execution
 echo "========== System Usage Report =========="
 echo -e "\nTotal CPU Usage:"
@@ -38,3 +42,6 @@ get_top_cpu_processes
 
 echo -e "\nTop 5 Processes by Memory Usage:"
 get_top_mem_processes
+
+echo -e "\nUptime:"
+get_uptime
