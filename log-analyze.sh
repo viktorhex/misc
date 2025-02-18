@@ -22,6 +22,12 @@ most_frequent_paths(){
     | get_top_5_formatted
 }
 
+most_frequent_status_codes(){
+  grep -oP '"\s+\K\d{3}(?=\s)' $1 \
+    | get_freq_and_sort \
+    | get_top_5_formatted
+}
+
 #!/bin/bash
 
 if [[ "$1" == "--input="* ]]; then
@@ -37,6 +43,9 @@ if [[ "$1" == "--input="* ]]; then
 
         echo -e "\nMost frequent paths:"
         most_frequent_paths $INPUT
+
+        echo -e "\nMost frequent status codes:"
+        most_frequent_status_codes $INPUT
 
     else
         echo "Error: The directory '$INPUT' does not exist."
